@@ -6,7 +6,8 @@
 class Entry
 {
 public:
-    Entry();
+    bool print=false;
+    Entry(bool ckprint=false);
 
     //保留可能的处理
     void doinsert(std::string,std::string);

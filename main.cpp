@@ -9,7 +9,7 @@ int main(int argc,char *argv[])
     try
     {
         Config config(argc,argv);
-        KV kv(std::make_shared<Entry_map<type_unordered_map>>(),"log.txt",config);
+        KV kv(std::make_shared<Entry_map<type_unordered_map>>(true),"log.txt",config);
 
         while(true)
         {

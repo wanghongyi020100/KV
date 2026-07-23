@@ -16,7 +16,7 @@ private:
     Maptype ump;
     mutable std::shared_mutex share_mutex;
 public:
-    Entry_map(){};
+    Entry_map(bool print=false):Entry(print){};
 
     bool insert(std::string key,std::string value)override
     {
