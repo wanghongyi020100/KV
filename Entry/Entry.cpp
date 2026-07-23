@@ -1,6 +1,7 @@
 #include<vector>
 #include<string>
 #include<iostream>
+
 #include"Entry.h"
 #include"Tool.h"
 #include"Message.h"

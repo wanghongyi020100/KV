@@ -4,6 +4,7 @@
 #include<memory>
 #include<string>
 #include<mutex>
+
 #include"Entry.h"
 
 class Log

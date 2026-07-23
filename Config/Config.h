@@ -4,5 +4,5 @@ class Config
 {
 public:
     Config(int,char *[]);
-    int CNT_THREAD=4;
+    int CNT_THREAD=2;
 };

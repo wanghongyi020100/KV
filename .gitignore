@@ -1,1 +1,7 @@
 *.o
+kv
+kvt1
+kvt2
+log.txt
+kv_test/test_1.txt
+kv_test/test_2.txt

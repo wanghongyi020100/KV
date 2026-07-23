@@ -4,22 +4,23 @@
 #include<unistd.h>
 #include<random>
 #include<fstream>
-#include<bits/stdc++.h>
+#include<vector>
+#include<chrono>
+
 #include"Maptype.h"
 #include"KV.h"
 #include"Config.h"
-using namespace std;
 
-std::mt19937 Rand(1123);
+std::mt19937 Rand(432134);
 
-const int CNT=10000000;
-vector<string>vs{"get","set","del","exists"};
+const int CNT=1000000;
+std::vector<std::string>vs{"get","set","del","exists"};
 
-void get(std::vector<std::string> &in)
+void get(std::vector<std::string>&in)
 {
-    int get=1,set=1,del=1,exists=1,fail=1;
+    int get=5,set=1,del=1,exists=4,fail=1;
     int sum=get+set+del+exists+fail;
-    int n=CNT;//std::cin>>n;
+    int n=CNT;
     for(int i=1;i<=n;i++)
     {
         std::string res="";
@@ -28,25 +29,21 @@ void get(std::vector<std::string> &in)
         {
             res+="get ";
             for(int j=1;j<=sk;j++)res+=Rand()%26+'a';
-            //res+="\n";
         }else if(t<get+set)
         {
             res+="set ";
             for(int j=1;j<=sk;j++)res+=Rand()%26+'a';
             res+=" ";
             for(int j=1;j<=sv;j++)res+=Rand()%26+'a';
-            //res+="\n";
         }
         else if(t<get+set+del)
         {
             res+="del ";
             for(int j=1;j<=sk;j++)res+=Rand()%26+'a';
-            //res+="\n";
         }else if(t<get+set+del+exists)
         {
             res+="exists ";
             for(int j=1;j<=sk;j++)res+=Rand()%26+'a';
-            //res+="\n";
         }
         else if(t<get+set+del+exists+fail)
         {
@@ -86,7 +83,6 @@ int main(int argc,char *argv[])
     Config config(argc,argv);
     KV kv2(std::make_shared<Entry_map<type_unordered_map>>(),"kv_test/test_1.txt",config);
     std::vector<std::string>in;
-    std::vector<long long>v2;
     get(in);
     std::cerr<<"build ok"<<'\n';
 
@@ -100,7 +96,7 @@ int main(int argc,char *argv[])
     for(int i=0;i<CNT;i++)
     {
         kv2.add(in[i]);
-        if(i%10000==0)std::cerr<<"1:"<<i<<'\n';
+        //if(i%10000==0)std::cerr<<"1:"<<i<<'\n';
     }
     kv2.threadpool->wait_test();
     end=std::chrono::steady_clock::now();

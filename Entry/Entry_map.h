@@ -5,6 +5,7 @@
 #include<memory>
 #include<mutex>
 #include<shared_mutex>
+
 #include"Entry.h"
 #include"Message.h"
 
@@ -44,4 +45,6 @@ public:
         if(ump.find(key)==ump.end())return "";
         return ump[key]->value;
     }
+
+    virtual ~Entry_map()=default;
 };

@@ -1,7 +1,17 @@
+.PHONY:clean kvt1 kvt2
+
 cxx=g++
-cxxflag=-std=c++17 -g -O0 -Wall -Wextra -I. -IEntry -IMessage -ITool -ILog -IKVS\
+cxxflag=-std=c++17 -Wall -Wextra -I. -IEntry -IMessage -ITool -ILog -IKVS\
 -IThreadPool -Ikv_test -IConfig
-threadflag=-pthread #-fsanitize=thread -no-pie
+
+debug?=1
+ifeq ($(debug),1)
+	cxxflag+=-g -O0
+else
+	cxxflag+=-O2 -DNDEBUG
+endif
+
+threadflag=-pthread 
 target=kv
 test_target1=kvt1
 test_target2=kvt2

@@ -4,6 +4,7 @@
 #include<string>
 #include<utility>
 #include<memory>
+
 #include"Maptype.h"
 #include"Entry_map.h"
 #include"ThreadPool.h"
@@ -19,5 +20,5 @@ private:
 public:
     KV(std::shared_ptr<Entry>,std::string,Config);
     std::shared_ptr<ThreadPool>threadpool;
-    bool add(const std::string);
+    void add(const std::string);
 };

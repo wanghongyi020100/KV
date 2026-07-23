@@ -8,8 +8,8 @@
 #include<condition_variable>
 #include<atomic>
 #include<type_traits>
+
 #include"ThreadPool.h"
-#include<iostream>
 
 ThreadPool::ThreadPool(int n):stop(false),cnt_task(0)
 {

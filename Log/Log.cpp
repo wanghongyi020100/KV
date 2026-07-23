@@ -3,6 +3,7 @@
 #include<memory>
 #include<string>
 #include<vector>
+
 #include"Entry.h"
 #include"Tool.h"
 #include"Log.h"
@@ -40,7 +41,6 @@ bool Log::start(std::shared_ptr<Entry>p)
         else
         {
             std::cerr<<"log start fail at line:"<<idx<<'\n';
-            //std::cerr<<"y to continue n to return else to skip all fail log";
             return false;
         }
     }
@@ -56,8 +56,6 @@ bool Log::add(std::shared_ptr<Entry>p,const std::string &s)
         return false;
     }
 
-    //std::cerr<<"this is "<<s<<'\n';
-
     int n=s.length();
     std::vector<std::string>v;
     for(int i=0;i<n;i++)
@@ -67,19 +65,16 @@ bool Log::add(std::shared_ptr<Entry>p,const std::string &s)
         while(r+1<n&&s[r+1]!=' ')r++;
         v.push_back(s.substr(i,r-i+1));
         i=r;
-        //std::cerr<<v.back()<<'\n';
     }
     int m=v.size();
     if(m==0)
     {
-        //std::cerr<<"count is "<<m<<" not accept"<<'\n';
         return false;
     }
     Tool::to_a_ascii(v[0]);
 
     if(m==1)
     {
-        //std::cerr<<"count is "<<m<<" not accept"<<'\n';
         return false;
     }else if(m==2)
     {
@@ -94,7 +89,6 @@ bool Log::add(std::shared_ptr<Entry>p,const std::string &s)
             if(file)p->doerase(v[1]);
             else
             {
-                std::cerr<<"del log fail"<<'\n';
                 return false;
             }
         }else if(v[0]=="exists")
@@ -105,7 +99,6 @@ bool Log::add(std::shared_ptr<Entry>p,const std::string &s)
             p->doget(v[1]);
         }else
         {
-            //std::cerr<<"count is "<<m<<" not accept"<<'\n';
             return false;
         }
     }else if(m==3)
@@ -121,17 +114,14 @@ bool Log::add(std::shared_ptr<Entry>p,const std::string &s)
             if(file)p->doinsert(v[1],v[2]);
             else
             {
-                std::cerr<<"set log fail"<<'\n';
                 return false;
             }
         }else
         {
-            //std::cerr<<"count is "<<m<<" not accept"<<'\n';
             return false;
         }
     }else
     {
-        //std::cerr<<"count is "<<m<<" not accept"<<'\n';
         return false;
     }
     return true;

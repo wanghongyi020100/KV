@@ -1,6 +1,7 @@
 #include<string>
 #include<utility>
 #include<vector>
+
 #include"Tool.h"
 
 std::string Tool::g_string_no32char(std::string &c,int l,int r)//[),去除空格

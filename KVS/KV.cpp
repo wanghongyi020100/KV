@@ -1,5 +1,7 @@
 #include<memory>
 #include<string>
+#include<system_error>
+
 #include"Log.h"
 #include"ThreadPool.h"
 #include"KV.h"
@@ -14,12 +16,11 @@ KV::KV(std::shared_ptr<Entry>entry,std::string s,Config config)
     threadpool=std::make_shared<ThreadPool>(config.CNT_THREAD);
     if(!log->start(p))
     {
-        std::cerr<<"KV build fail\n";
-        return;
+        throw std::system_error(errno,std::generic_category(),"KV build faild");
     }
 }
 
-bool KV::add(const std::string s)
+void KV::add(const std::string s)
 {
-    return log->add(p,s);
+    threadpool->add([this,s](){log->add(p,s);});
 }
