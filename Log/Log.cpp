@@ -15,6 +15,12 @@ bool Log::start(std::shared_ptr<Entry>p)
     std::ifstream file(log_file);
     if(!file.is_open())
     {
+        std::ofstream create_file(log_file);
+        if(!create_file.is_open())
+        {
+            std::cerr<<"open file fail"<<'\n';
+            return false;
+        }
         std::cerr<<"open file fail"<<'\n';
         return false;
     }

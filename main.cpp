@@ -10,10 +10,9 @@ int main(int argc,char *argv[])
     {
         Config config(argc,argv);
         KV kv(std::make_shared<Entry_map<type_unordered_map>>(true),"log.txt",config);
-
-        while(true)
+        std::string s;
+        while(std::getline(std::cin,s))
         {
-            std::string s;std::getline(std::cin,s);
             kv.add(s);
         }
     }catch(const std::exception &err)
