@@ -14,6 +14,7 @@ int main(int argc,char *argv[])
         while(std::getline(std::cin,s))
         {
             kv.add(s);
+            kv.threadpool->wait_test();
         }
     }catch(const std::exception &err)
     {

@@ -21,8 +21,7 @@ bool Log::start(std::shared_ptr<Entry>p)
             std::cerr<<"open file fail"<<'\n';
             return false;
         }
-        std::cerr<<"open file fail"<<'\n';
-        return false;
+        return true;
     }
 
     std::string s;
